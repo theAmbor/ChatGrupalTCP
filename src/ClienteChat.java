@@ -54,6 +54,39 @@ public class ClienteChat {
 
             JButton buttonEnviar = new JButton("Enviar");
 
+            buttonEnviar.addActionListener(e -> {
+                String mensaje = textFieldEntrada.getText();
+                escritor.println(mensaje);
+                textFieldEntrada.setText("");
+            });
+
+            panelInferior.add(textFieldEntrada); // Agregar el JTextField al panel inferior
+            panelInferior.add(buttonEnviar);
+
+            panel.add(panelInferior, BorderLayout.SOUTH); // Alinear el panel inferior en la parte inferior del BorderLayout
+
+            frame.getContentPane().add(panel);
+
+            frame.setSize(600, 400); // Ajustar tamaño del JFrame
+            frame.setVisible(true);
+
+            while (true) {
+                String mensajeRecibido = lector.readLine();
+
+                if (mensajeRecibido.startsWith("[Usuarios]: ")) {
+                    String[] usuariosConectados = mensajeRecibido.substring(11).split(", ");
+                    SwingUtilities.invokeLater(() -> {
+                        modelo.clear();
+                        for (String usuario : usuariosConectados) {
+                            modelo.addElement(usuario);
+                        }
+                    });
+                } else {
+                    mensajesChat.append(mensajeRecibido + "\n");
+                }
+
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
