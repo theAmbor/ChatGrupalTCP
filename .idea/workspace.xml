@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abf24a78-cb33-4d83-81ec-4b7b10ec0957" name="Changes" comment="Creamos la clase ManejadorCliente dentro del Servidor para que sea más fácil utilizar las variables y métodos declarados anteriormente, ya que son static.">
+    <list default="true" id="abf24a78-cb33-4d83-81ec-4b7b10ec0957" name="Changes" comment="Elaboramos el metodo run y dos metodos extra para mostrar la lista de usuarios y enviar los mensajes a todos los usuarios conectados.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServidorChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServidorChat.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +93,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1709231765717</updated>
-      <workItem from="1709231766779" duration="3874000" />
+      <workItem from="1709231766779" duration="5370000" />
     </task>
     <task id="LOCAL-00001" summary="Creación del proyecto y la clase ServidorChat">
       <option name="closed" value="true" />
@@ -136,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709235001822</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Elaboramos el metodo run y dos metodos extra para mostrar la lista de usuarios y enviar los mensajes a todos los usuarios conectados.">
+      <option name="closed" value="true" />
+      <created>1709236033490</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1709236033490</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +177,7 @@
     <MESSAGE value="Correcciones y metodo main del cliente." />
     <MESSAGE value="Main del Servidor" />
     <MESSAGE value="Creamos la clase ManejadorCliente dentro del Servidor para que sea más fácil utilizar las variables y métodos declarados anteriormente, ya que son static." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creamos la clase ManejadorCliente dentro del Servidor para que sea más fácil utilizar las variables y métodos declarados anteriormente, ya que son static." />
+    <MESSAGE value="Elaboramos el metodo run y dos metodos extra para mostrar la lista de usuarios y enviar los mensajes a todos los usuarios conectados." />
+    <option name="LAST_COMMIT_MESSAGE" value="Elaboramos el metodo run y dos metodos extra para mostrar la lista de usuarios y enviar los mensajes a todos los usuarios conectados." />
   </component>
 </project>
