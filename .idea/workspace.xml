@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abf24a78-cb33-4d83-81ec-4b7b10ec0957" name="Changes" comment="Main del Servidor">
+    <list default="true" id="abf24a78-cb33-4d83-81ec-4b7b10ec0957" name="Changes" comment="Creamos la clase ManejadorCliente dentro del Servidor para que sea más fácil utilizar las variables y métodos declarados anteriormente, ya que son static.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ServidorChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServidorChat.java" afterDir="false" />
     </list>
@@ -56,6 +56,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.ClienteChat.executor": "Run",
+    "Application.ServidorChat.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -69,6 +70,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="ClienteChat" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ClienteChat" />
+      <module name="ChatGrupalTCP" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -84,7 +94,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1709231765717</updated>
-      <workItem from="1709231766779" duration="3106000" />
+      <workItem from="1709231766779" duration="3874000" />
     </task>
     <task id="LOCAL-00001" summary="Creación del proyecto y la clase ServidorChat">
       <option name="closed" value="true" />
@@ -118,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709234703016</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Creamos la clase ManejadorCliente dentro del Servidor para que sea más fácil utilizar las variables y métodos declarados anteriormente, ya que son static.">
+      <option name="closed" value="true" />
+      <created>1709235001822</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1709235001822</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +169,7 @@
     <MESSAGE value="Creación del proyecto y la clase ServidorChat" />
     <MESSAGE value="Correcciones y metodo main del cliente." />
     <MESSAGE value="Main del Servidor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Main del Servidor" />
+    <MESSAGE value="Creamos la clase ManejadorCliente dentro del Servidor para que sea más fácil utilizar las variables y métodos declarados anteriormente, ya que son static." />
+    <option name="LAST_COMMIT_MESSAGE" value="Creamos la clase ManejadorCliente dentro del Servidor para que sea más fácil utilizar las variables y métodos declarados anteriormente, ya que son static." />
   </component>
 </project>

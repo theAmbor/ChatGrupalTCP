@@ -40,6 +40,7 @@ public class ServidorChat {
 
                 nombreUsuario = lector.readLine();
                 usuariosConectados.add(nombreUsuario);
+                enviarUsuariosConectados();
 
                 flujosSalida.add(escritor);
             } catch (IOException e) {
@@ -49,7 +50,33 @@ public class ServidorChat {
 
         @Override
         public void run() {
+            String mensaje;
+            try {
+                while ((mensaje = lector.readLine()) != null) {
+                    enviarMensajeATodos(nombreUsuario + ": " + mensaje);
+                    enviarUsuariosConectados();
+                }
+            } catch (IOException e) {
+                System.out.println(nombreUsuario + " se ha desconectado");
+                usuariosConectados.remove(nombreUsuario);
+                flujosSalida.remove(escritor);
+                enviarUsuariosConectados();
+            }
+        }
 
+        private void enviarMensajeATodos(String mensaje) {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            String mensajeFormateado = "[" + sdf.format(new Date()) + "] " + mensaje;
+
+            for (PrintWriter writer : flujosSalida) {
+                writer.println(mensajeFormateado);
+            }
+        }
+
+        private static void enviarUsuariosConectados() {
+            for (PrintWriter writer : flujosSalida) {
+                writer.println("[Usuarios]: " + String.join(", ", usuariosConectados));
+            }
         }
     }
 }
