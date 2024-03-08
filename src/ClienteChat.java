@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,7 +11,7 @@ import java.net.Socket;
 
 public class ClienteChat {
     public static void main(String[] args) {
-        String nombreUsuario = JOptionPane.showInputDialog("Ingrese su nombre de usuario:");
+        String nombreUsuario = obtenerNombreUsuario();
 
         try {
             Socket socket = new Socket("localhost", 5000);
@@ -18,6 +20,16 @@ public class ClienteChat {
             escritor.println(nombreUsuario);
 
             BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            while (true){
+                String enUso = lector.readLine();
+                if (enUso.equals("si")) {
+                    JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya está en uso.", "Error", JOptionPane.ERROR_MESSAGE);
+                    nombreUsuario = obtenerNombreUsuario();
+                    escritor.println(nombreUsuario);
+                }else{
+                    break;
+                }
+            }
 
             JFrame frame = new JFrame("Chat - " + nombreUsuario);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,6 +42,7 @@ public class ClienteChat {
             mensajesChat.setRows(8);
             JScrollPane panelMensajes = new JScrollPane(mensajesChat);
             panel.add(panelMensajes, BorderLayout.CENTER);
+            panel.setBorder(new EmptyBorder(20, 10, 10, 0));
 
             JPanel panelDerecha = new JPanel();
             panelDerecha.setLayout(new BoxLayout(panelDerecha, BoxLayout.Y_AXIS));
@@ -47,18 +60,23 @@ public class ClienteChat {
             panel.add(panelDerecha, BorderLayout.EAST);
 
             JPanel panelInferior = new JPanel();
-            panelInferior.setBorder(new EmptyBorder(10, 0, 0, 0));
+            panelInferior.setBorder(new EmptyBorder(5, 0, 5, 0));
 
             JTextField textFieldEntrada = new JTextField();
             textFieldEntrada.setColumns(30);
 
             JButton buttonEnviar = new JButton("Enviar");
 
-            buttonEnviar.addActionListener(e -> {
-                String mensaje = textFieldEntrada.getText();
-                escritor.println(mensaje);
-                textFieldEntrada.setText("");
+            buttonEnviar.addActionListener(e -> enviarMensaje(textFieldEntrada, escritor));
+            textFieldEntrada.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        enviarMensaje(textFieldEntrada, escritor);
+                    }
+                }
             });
+
 
             panelInferior.add(textFieldEntrada); // Agregar el JTextField al panel inferior
             panelInferior.add(buttonEnviar);
@@ -67,13 +85,18 @@ public class ClienteChat {
 
             frame.getContentPane().add(panel);
 
-            frame.setSize(600, 400); // Ajustar tamaño del JFrame
+            frame.setSize(700, 500); // Ajustar tamaño del JFrame
             frame.setVisible(true);
 
             while (true) {
                 String mensajeRecibido = lector.readLine();
 
-                if (mensajeRecibido.startsWith("[Usuarios]: ")) {
+                if (mensajeRecibido.startsWith("[MENSAJE]: ")) {
+                    String mensajeAnterior = mensajeRecibido.substring(11);
+                    SwingUtilities.invokeLater(() -> {
+                        mensajesChat.append(mensajeAnterior + "\n");
+                    });
+                }else if (mensajeRecibido.startsWith("[Usuarios]: ")) {
                     String[] usuariosConectados = mensajeRecibido.substring(11).split(", ");
                     SwingUtilities.invokeLater(() -> {
                         modelo.clear();
@@ -91,4 +114,27 @@ public class ClienteChat {
             e.printStackTrace();
         }
     }
+
+    private static String obtenerNombreUsuario() {
+        while (true) {
+            String nombreUsuario = JOptionPane.showInputDialog("Ingrese su nombre de usuario:");
+
+            if (nombreUsuario == null) {
+                System.exit(0); // Si se cierra el cuadro de diálogo, salimos del programa
+            }
+
+            if (!nombreUsuario.trim().isEmpty()) {
+                return nombreUsuario;
+            } else {
+                JOptionPane.showMessageDialog(null, "El nombre de usuario no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private static void enviarMensaje(JTextField textFieldEntrada, PrintWriter escritor) {
+        String mensaje = textFieldEntrada.getText();
+        escritor.println(mensaje);
+        textFieldEntrada.setText("");
+    }
 }
+
